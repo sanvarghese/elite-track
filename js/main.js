@@ -506,6 +506,21 @@ $('.blog-active').slick({
 });
 
 
+
+
+window.addEventListener("load", function () {
+        const preloader = document.getElementById("preloader");
+        setTimeout(function () {
+            preloader.classList.add("loaded");
+        }, 600); // minimum display time (ms)
+    });
+
+    // Safety fallback — hide loader after 4s no matter what
+    setTimeout(function () {
+        const preloader = document.getElementById("preloader");
+        if (preloader) preloader.classList.add("loaded");
+    }, 4000);
+
     
 
 // counterUp
