@@ -1,26 +1,3 @@
-/* CSS Index
------------------------------------
-1. Theme default css
-2. header
-3. slider
-4. about
-5. features
-6. services
-7. video
-8. choose
-9. brand
-10. work-process
-11. team
-12. counter
-13. cta
-14. testimonial
-15. blog
-16. pagination
-17. f-cta
-18. pricing
-19. contact
-20. footer
-
 */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap');
@@ -397,6 +374,96 @@ label {
     background: #0f6456;
 }
 
+
+/* ============================================
+   PRELOADER — Logo Ring Reveal
+   ============================================ */
+/* ============================================
+   PRELOADER — Logo Ring Reveal
+   ============================================ */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-inner {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* The animated ring that draws itself */
+.loader-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 3px solid transparent;
+    border-top-color: #0f6456;
+    border-right-color: #8B9A7B;
+    border-radius: 50%;
+    animation: ringSpin 1.2s linear infinite;
+}
+
+.loader-ring::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border: 2px solid transparent;
+    border-bottom-color: #0f6456;
+    border-left-color: #8B9A7B;
+    border-radius: 50%;
+    animation: ringSpin 1.8s linear infinite reverse;
+}
+
+/* Logo in the middle with pulse */
+.loader-logo {
+    width: 110px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: logoPulse 1.8s ease-in-out infinite;
+}
+
+.loader-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@keyframes ringSpin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes logoPulse {
+    0%, 100% { transform: scale(1);    opacity: 1; }
+    50%      { transform: scale(1.08); opacity: 0.85; }
+}
+
+
 /* 2. header */
 
 .header-top {
@@ -736,7 +803,7 @@ label {
     color: #0f6456;
 }
 
-.top-btn {
+/* .top-btn {
     background: #0f6456;
     padding: 12px 30px;
     width: 100%;
@@ -755,8 +822,112 @@ label {
 
 .top-btn:hover {
     background: transparent linear-gradient(90deg, #0f64560%, #0f6456100%) 0% 0% no-repeat padding-box;
-    color: #000;
+    color: #fff;
+} */
+
+/* =========================================================
+   UNIVERSAL BUTTON HOVER — Outline → Fill (Option 2)
+   Applies to all buttons across the homepage
+   ========================================================= */
+
+/* --- Base style shared by all buttons --- */
+.top-btn,
+.btn,
+.btn.active,
+.ss-btn,
+.slider-btn .btn,
+.pricing-btn .btn,
+.btn-custom,
+.slider-btn a,
+.slider-btn button,
+.day-book ul li a,
+.blog-btn a {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    display: inline-block;
+    border: 2px solid #0f6456;
+    background: #0f6456;
+    color: #fff !important;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 12px;
+    padding: 12px 30px;
+    transition: color 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 500;
 }
+
+/* --- Sliding white fill --- */
+.top-btn::before,
+.btn::before,
+.btn.active::before,
+.ss-btn::before,
+.slider-btn .btn::before,
+.pricing-btn .btn::before,
+.btn-custom::before,
+.slider-btn a::before,
+.slider-btn button::before,
+.day-book ul li a::before,
+.blog-btn a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease;
+    z-index: -1;
+}
+
+/* --- Hover state: text becomes green --- */
+.top-btn:hover,
+.btn:hover,
+.btn.active:hover,
+.ss-btn:hover,
+.slider-btn .btn:hover,
+.pricing-btn .btn:hover,
+.btn-custom:hover,
+.slider-btn a:hover,
+.slider-btn button:hover,
+.day-book ul li a:hover,
+.blog-btn a:hover {
+    color: #0f6456 !important;
+    border-color: #0f6456;
+    transform: translateY(-2px);
+}
+
+/* --- Hover state: fill slides in --- */
+.top-btn:hover::before,
+.btn:hover::before,
+.btn.active:hover::before,
+.ss-btn:hover::before,
+.slider-btn .btn:hover::before,
+.pricing-btn .btn:hover::before,
+.btn-custom:hover::before,
+.slider-btn a:hover::before,
+.slider-btn button:hover::before,
+.day-book ul li a:hover::before,
+.blog-btn a:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* --- Small buttons (category cards, blog) — smaller padding --- */
+.day-book ul li a,
+.blog-btn a {
+    padding: 8px 20px;
+    font-size: 13px;
+    border-radius: 8px;
+    letter-spacing: 1px;
+}
+
+
 
 .sticky-menu .logo {
     margin-top: 0;
@@ -1427,7 +1598,7 @@ label {
     z-index: 1;
     width: 79px;
     height: 100%;
-    background: #0f6456;
+    background: transparent;
 }
 
 .slider-info .email {
@@ -7091,7 +7262,7 @@ section:hover .section-title h2::before {
 .copy-text {
     color: #AAC2C6;
     font-size: 16px;
-    /* margin-bottom: 20px; */
+    margin-top: 20px;
 }
 
 .copyright-wrap li a {
