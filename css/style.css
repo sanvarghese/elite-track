@@ -3024,120 +3024,172 @@ section:hover .section-title h2::before {
     border-color: rgba(15, 100, 86, 0.25);
 }
 
-/* Image zoom on hover */
-.services-thumb {
+/* =========================================================
+   ROOM / SERVICES CARD – Modern Image Hover with Quick Icon
+   ========================================================= */
+/* =========================================================
+   ROOM CARDS – Clean Layout + Modern Hover
+   ========================================================= */
+
+/* Card base */
+.single-services.ser-m {
+    background: #fff;
+    border-radius: 16px;
     overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    margin-bottom: 30px;
+}
+
+.single-services.ser-m:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+}
+
+/* Remove old green offset effect */
+.single-services::before {
+    display: none !important;
+}
+
+/* ---------- Image + Hover Overlay ---------- */
+.services-thumb {
     position: relative;
+    overflow: hidden;
 }
 
 .services-thumb img {
     width: 100%;
-    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: block;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.single-services:hover .services-thumb img {
+.services-thumb:hover img {
     transform: scale(1.08);
 }
 
-/* .single-services:hover .day-book li a {
-    background: #0f6456;
-    color: #fff !important;
-} */
-
-/* Optional: soft dark overlay on image */
-.services-thumb::after {
-    content: "";
+.services-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(15, 100, 86, 0.25), transparent 60%);
+    background: rgba(15, 100, 86, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
+    transition: opacity 0.35s ease;
+    z-index: 2;
 }
 
-.single-services:hover .services-thumb::after {
+.services-thumb:hover .services-overlay {
     opacity: 1;
 }
 
-/* Make content feel a bit elevated */
-.services-content {
-    transition: all 0.4s ease;
+.services-view-icon {
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0f6456;
+    font-size: 20px;
+    transform: scale(0.5);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.single-services:hover .services-content h4 a {
+.services-thumb:hover .services-view-icon {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* ---------- Content ---------- */
+.services-content {
+    padding: 28px 25px 30px;
+}
+
+.services-content h4 {
+    font-size: 22px;
+    margin-bottom: 12px;
     color: #0f6456;
 }
 
-/* Day-book (price + Book Now) hover polish */
+.services-content p {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 0;
+}
+
+/* ---------- Amenity Icons (horizontal) ---------- */
+.single-services .icon {
+    margin-top: 22px;
+    margin-bottom: 8px;
+}
+
+.single-services .icon ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.single-services .icon ul li {
+    display: inline-flex !important;
+    margin: 0 !important;
+    padding: 0;
+}
+
+.single-services .icon ul li img {
+    height: 22px;
+    width: auto;
+}
+
+/* ---------- Price + Book Now ---------- */
 .single-services .day-book {
+    margin-top: 25px;
+    margin-left: 0;
+    margin-right: 0;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.single-services .day-book ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.single-services .day-book ul li {
+    width: auto !important;
+    border: none !important;
+    padding: 0 !important;
+    font-weight: 600;
+    color: #0f6456;
+    font-size: 16px;
+}
+
+.single-services .day-book ul li a {
+    background: #0f6456;
+    color: #fff !important;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
     transition: all 0.3s ease;
 }
 
-.single-services:hover .day-book {
-    background: #f8fdfc;
+.single-services .day-book ul li a:hover {
+    background: #0a4d42;
+    transform: translateY(-2px);
 }
-
-.single-services .day-book ul{
-    display:flex;
-    align-items: center;
-    margin-top: 16px;
-}
-
-.single-services .day-book a {
-    color: #0f6456;
-}
-
-.single-services .day-book li {
-    display: inline-block;
-    width: 49.2%;
-    text-align: center;
-    padding: 20px 0;
-    border-right: 1px solid #EEE;
-
-}
-
-.single-services .day-book li:last-child {
-    border: none;
-}
-
-.single-services .icon {
-    margin-top: 30px;
-}
-
-.single-services .icon li {
-    display: inline-block;
-    margin-right: 18px;
-}
-
-.single-services .icon li:last-child {
-    margin-right: 0;
-}
-
-.single-services .icon li img {
-    height: 20px;
-}
-
-.single-services::before {
-    content: "";
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    left: 5px;
-    top: 5px;
-    background: #0f6456;
-    z-index: -1;
-    transition: .3s;
-    opacity: 0;
-}
-
-.service-t h2 {
-    top: 55px;
-}
-
-.services-thumb img {
-    width: 100%;
-}
-
 .services-content span {
     display: block;
     height: 2px;
