@@ -12,7 +12,7 @@ $(".skill-per").each(function() {
     { animatedValue: id },
     {
       duration: 1000,
-      step: function() {
+      step: function() {	
         $this.attr("id", Math.floor(this.animatedValue) + "%");
       },
       complete: function() {
@@ -558,13 +558,25 @@ function parallaxMouse() {
 parallaxMouse();
 
 // service active
-$('.s-single-services').on('mouseenter', function () {
-	$(this).addClass('active').parent().siblings().find('.s-single-services').removeClass('active');
-})
+/* magnificPopup img view – separate gallery for each service card */
+$('.services-thumb').each(function () {
+    $(this).magnificPopup({
+        delegate: 'a.popup-image',   // only links inside this card
+        type: 'image',
+        gallery: {
+            enabled: true,
+            navigateByImgClick: true,
+            preload: [0, 1]
+        },
+        image: {
+            titleSrc: 'title'   // optional – shows title if you add title attribute
+        }
+    });
+});
 // service active
-$('.s-link').on('mouseenter', function () {
-	$(this).addClass('active').parent().siblings().find('.s-link').removeClass('active');
-})
+// $('.s-link').on('mouseenter', function () {
+// 	$(this).addClass('active').parent().siblings().find('.s-link').removeClass('active');
+// })
 
 // scrollToTop
 $.scrollUp({
