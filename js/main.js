@@ -25,12 +25,12 @@ $(".skill-per").each(function() {
     
 // sticky
 $(window).on('scroll', function () {
-	var scroll = $(window).scrollTop();
-	if (scroll < 200) {
-		$("#header-sticky").removeClass("sticky-menu");
-	} else {
-		$("#header-sticky").addClass("sticky-menu");
-	}
+    var scroll = $(window).scrollTop();
+    if (scroll < 200) {
+        $("#header-sticky").removeClass("sticky-menu");
+    } else {
+        $("#header-sticky").addClass("sticky-menu");
+    }
 });
 
 // RESPONSIVE MENU
