@@ -81,6 +81,9 @@
     <!-- main-area -->
     <main>
         <!-- slider-area -->
+       <!-- File: index.html  (replace the whole <section id="home" ...> ... </section> block) -->
+
+        <!-- slider-area -->
         <section id="home" class="slider-area fix p-relative">
             <!-- slider-info-area -->
             <div class="slider-info">
@@ -89,38 +92,69 @@
                         <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" title="Twitter"><i class="fab fa-youtube"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
                     </span>
-                    <!--  /social media icon redux -->
                 </div>
                 <div class="email">
                     <span class="mr-15">elitetrack@gmail.com</span> +91 000 000 00 00
                 </div>
             </div>
             <!-- slider-info-area-end -->
-            <div class="slider-active" style="background: #101010;">
-                <div class="single-slider slider-bg d-flex align-items-center"
-                    style="background-image: url(img/slider/slider_bg1.jpg); background-size: cover;">
-                    <div class="container">
-                        <div class="row justify-content-center align-items-center">
 
+            <div class="slider-active" style="background: #101010;">
+                <div class="single-slider slider-bg d-flex align-items-center">
+
+                    <!-- Animated background (Ken Burns zoom) -->
+                    <div class="hero-bg" style="background-image: url(img/slider/slider_bg1.jpg);"></div>
+                    <div class="hero-overlay"></div>
+                    <div class="hero-glow"></div>
+
+                    <!-- Floating particles -->
+                    <div class="hero-particles" aria-hidden="true">
+                        <span style="--x:8%;  --s:6px;  --d:11s; --t:0s;"></span>
+                        <span style="--x:18%; --s:10px; --d:14s; --t:2s;"></span>
+                        <span style="--x:28%; --s:5px;  --d:10s; --t:5s;"></span>
+                        <span style="--x:40%; --s:8px;  --d:13s; --t:1s;"></span>
+                        <span style="--x:52%; --s:12px; --d:16s; --t:3s;"></span>
+                        <span style="--x:63%; --s:6px;  --d:12s; --t:6s;"></span>
+                        <span style="--x:72%; --s:9px;  --d:15s; --t:0.5s;"></span>
+                        <span style="--x:82%; --s:5px;  --d:10s; --t:4s;"></span>
+                        <span style="--x:90%; --s:11px; --d:17s; --t:2.5s;"></span>
+                        <span style="--x:35%; --s:7px;  --d:12s; --t:7s;"></span>
+                    </div>
+
+                    <div class="container hero-container">
+                        <div class="row justify-content-center align-items-center">
                             <div class="col-lg-7 col-md-7">
-                                <div class="slider-content s-slider-content  text-center">
-                                    <h5 data-animation="fadeInUp" data-delay=".4s">LUXURY HOTEL & BEST RESORT</h5>
-                                    <h2 data-animation="fadeInUp" data-delay=".4s">Enjoy A Luxury
-                                        <span>Experience</span>
+                                <div class="slider-content s-slider-content text-center">
+
+                                    <h5 class="hero-anim hero-sub">LUXURY HOTEL &amp; BEST RESORT</h5>
+
+                                    <h2 class="hero-title">
+                                        <b class="hero-line"><b class="hero-line-inner">Enjoy A Luxury</b></b>
+                                        <b class="hero-line"><b class="hero-line-inner"><span class="hero-shine">Experience</span></b></b>
                                     </h2>
-                                    <div class="slider-btn mt-30 mb-105">
-                                        <a href="#" class="btn ss-btn active mr-15" data-animation="fadeInLeft"
-                                            data-delay=".4s">book your trip </a>
+
+                                    <div class="hero-divider hero-anim"><i></i></div>
+
+                                    <div class="slider-btn mt-30 mb-105 hero-anim hero-btn">
+                                        <a href="#" class="btn ss-btn active mr-15 hero-pulse">book your trip</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Scroll indicator -->
+                    <a href="#pricing" class="hero-scroll" aria-label="Scroll down">
+                        <span class="hero-scroll-dot"></span>
+                    </a>
                 </div>
             </div>
         </section>
+        <!-- slider-area-end -->
+
+
         <!-- slider-area-end -->
         <!-- booking-area -->
         <!-- <div id="booking" class="booking-area p-relative">
