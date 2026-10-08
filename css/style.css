@@ -15649,3 +15649,29 @@ blockquote cite {
         height: 38vh;
     }
 }
+
+/* File: css/places.css  (paste at the very bottom) */
+
+/* =========================================================
+   Lightbox must sit ABOVE the Bootstrap modal
+   Bootstrap modal = 1055, backdrop = 1050
+   Magnific default = 1042 / 1043  (this is why it opened behind)
+   ========================================================= */
+.mfp-bg.place-lightbox {
+    z-index: 2040;
+    background: #0b0b0b;
+}
+
+.mfp-wrap.place-lightbox {
+    z-index: 2041;
+}
+
+/* nicer close button / counter on the dark overlay */
+.place-lightbox .mfp-close {
+    color: #fff;
+    opacity: 0.9;
+}
+
+.place-lightbox .mfp-counter {
+    color: #ddd;
+}

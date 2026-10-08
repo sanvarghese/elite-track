@@ -1,65 +1,76 @@
+// File: js/places.js
 (function ($) {
     "use strict";
 
-    // Place card click → open modal with slider
-    $('.place-card').on('click', function () {
-        var title  = $(this).data('place-title');
-        var images = ($(this).data('images') || '').toString().split(',').map(function (s) {
-            return s.trim();
-        }).filter(Boolean);
+    var $modal = $("#placeModal");
+    var $slider = $(".place-slider");
 
-        // Set title
-        $('#placeModalTitle').text(title);
+    /* ---------------------------------------------------------
+       Click on a place card -> build slides for the modal
+       (plain <img>, no link, so nothing else can open)
+       --------------------------------------------------------- */
+    $(".place-card").on("click", function () {
+        var title = $(this).data("place-title") || "Place";
+        var images = ($(this).data("images") || "")
+            .toString()
+            .split(",")
+            .map(function (s) {
+                return s.trim();
+            })
+            .filter(Boolean);
 
-        // Build slides
-        var $slider = $('.place-slider');
-        var slidesHtml = '';
-        images.forEach(function (src, i) {
-            slidesHtml += '<div class="slide-item">' +
-                            '<a href="' + src + '" class="popup-image" data-index="' + i + '">' +
-                              '<img src="' + src + '" alt="' + title + ' image ' + (i + 1) + '">' +
-                            '</a>' +
-                          '</div>';
-        });
+        $("#placeModalTitle").text(title);
+
+        var slidesHtml = images
+            .map(function (src, i) {
+                return (
+                    '<div class="slide-item">' +
+                    '<img src="' + src + '" alt="' + title + " image " + (i + 1) + '">' +
+                    "</div>"
+                );
+            })
+            .join("");
+
+        destroySlider();
         $slider.html(slidesHtml);
+    });
 
-        // Init slick AFTER modal is shown
-        $('#placeModal').one('shown.bs.modal', function () {
-            if ($slider.hasClass('slick-initialized')) {
-                $slider.slick('unslick');
-            }
-            $slider.slick({
-                dots: true,
-                arrows: true,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                adaptiveHeight: false,
-                prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-                nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
-            });
+    /* ---------------------------------------------------------
+       Init Slick AFTER the modal is fully shown
+       --------------------------------------------------------- */
+    $modal.on("shown.bs.modal", function () {
+        if (!$slider.children().length) return;
 
-            // Init Magnific Popup gallery for zoom
-            $slider.find('.popup-image').magnificPopup({
-                type: 'image',
-                gallery: {
-                    enabled: true,
-                    navigateByImgClick: true,
-                    preload: [0, 1]
-                },
-                mainClass: 'mfp-img-mobile'
-            });
+        destroySlider();
+
+        $slider.slick({
+            dots: true,
+            arrows: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            adaptiveHeight: false,
+            prevArrow:
+                '<button type="button" class="slick-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>',
+            nextArrow:
+                '<button type="button" class="slick-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>',
         });
     });
 
-    // Cleanup when modal closes
-    $('#placeModal').on('hidden.bs.modal', function () {
-        var $slider = $('.place-slider');
-        if ($slider.hasClass('slick-initialized')) {
-            $slider.slick('unslick');
-        }
+    /* ---------------------------------------------------------
+       Clean up when the modal closes
+       --------------------------------------------------------- */
+    $modal.on("hidden.bs.modal", function () {
+        destroySlider();
         $slider.empty();
     });
 
+    function destroySlider() {
+        if ($slider.hasClass("slick-initialized")) {
+            try {
+                $slider.slick("unslick");
+            } catch (e) {}
+        }
+    }
 })(jQuery);
