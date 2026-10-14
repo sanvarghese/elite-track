@@ -1616,7 +1616,7 @@ label {
 
 .header-three .main-menu nav ul>li>a:hover,
 .header-three .main-menu nav ul>li>a.active {
-    color: #ffffff !important;
+    color: #0f6456 !important;
 }
 
 /* Active underline (white at top) */
@@ -15674,4 +15674,323 @@ blockquote cite {
 
 .place-lightbox .mfp-counter {
     color: #ddd;
+}
+/* =========================================================
+   PACKAGE CUSTOMISATION SECTION
+   ========================================================= */
+/* =========================================================
+   CUSTOMISE CTA BUTTON (on packages page)
+   ========================================================= */
+.customise-trigger-btn {
+    padding: 15px 45px !important;
+    font-size: 15px !important;
+    border-radius: 30px !important;
+    box-shadow: 0 10px 30px rgba(44, 69, 73, .2);
+    transition: all .3s ease;
+}
+.customise-trigger-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(44, 69, 73, .3);
+}
+.customise-cta-note {
+    margin-top: 14px;
+    font-size: 14px;
+    color: #7a8b8e;
+}
+
+/* =========================================================
+   CUSTOMISE MODAL (POPUP)
+   ========================================================= */
+.customise-modal .modal-content {
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, .25);
+}
+
+.customise-modal-header {
+    background: #2C4549;
+    color: #fff;
+    padding: 22px 30px;
+    border-bottom: none;
+    align-items: flex-start;
+}
+.customise-modal-header .modal-title {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.customise-modal-header p {
+    font-size: 13px;
+    opacity: .85;
+    color: #e6edee;
+}
+.customise-modal-header .btn-close {
+    opacity: .8;
+    filter: invert(1);
+    align-self: center;
+}
+.customise-modal-header .btn-close:hover { opacity: 1; }
+
+.customise-modal .modal-body {
+    padding: 30px 35px 10px;
+    background: #fff;
+}
+
+.customise-modal-footer {
+    padding: 18px 30px;
+    border-top: 1px solid #eef1f2;
+    background: #fafbfb;
+    gap: 12px;
+}
+
+/* =========================================================
+   FORM FIELDS
+   ========================================================= */
+.cf-group {
+    padding: 22px 0;
+    border-bottom: 1px dashed #e3e8ea;
+}
+.cf-group:first-child { padding-top: 5px; }
+.cf-group:last-of-type { border-bottom: none; }
+
+.cf-group-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2C4549;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cf-step {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: #2C4549;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.cf-label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #4a5a5e;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+}
+.cf-label .req { color: #e63946; }
+
+.cf-input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid #dfe5e7;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #2C4549;
+    background: #fff;
+    transition: all .25s ease;
+    outline: none;
+}
+.cf-input:focus {
+    border-color: #2C4549;
+    box-shadow: 0 0 0 4px rgba(44, 69, 73, .08);
+}
+textarea.cf-input { resize: vertical; }
+
+/* Chips (checkbox pills) */
+.cf-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 4px;
+}
+.cf-chip {
+    position: relative;
+    cursor: pointer;
+    margin: 0;
+}
+.cf-chip input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.cf-chip span {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 1.5px solid #dfe5e7;
+    border-radius: 30px;
+    font-size: 13px;
+    color: #4a5a5e;
+    background: #fff;
+    transition: all .2s ease;
+    user-select: none;
+}
+.cf-chip:hover span { border-color: #2C4549; color: #2C4549; }
+.cf-chip input:checked + span {
+    background: #2C4549;
+    color: #fff;
+    border-color: #2C4549;
+    box-shadow: 0 6px 16px rgba(44, 69, 73, .25);
+}
+
+/* Success box */
+.cf-success {
+    text-align: center;
+    padding: 30px 20px;
+    background: #e9f7ef;
+    border-radius: 12px;
+    margin: 15px 0 5px;
+    border: 1px solid #bfe6cf;
+}
+.cf-success i {
+    font-size: 42px;
+    color: #2a9d63;
+    margin-bottom: 10px;
+}
+.cf-success h5 { color: #2C4549; margin-bottom: 6px; }
+.cf-success p { color: #5a6b6e; margin: 0; }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 767px) {
+    .customise-modal .modal-body { padding: 22px 20px 10px; }
+    .customise-modal-header { padding: 18px 20px; }
+    .customise-modal-footer {
+        padding: 14px 20px;
+        flex-direction: column-reverse;
+    }
+    .customise-modal-footer .pkg-btn { width: 100%; }
+    .cf-group-title { font-size: 15px; }
+}
+
+/* =========================================================
+   ANIMATED CUSTOMISE CTA BUTTON
+   ========================================================= */
+
+/* Base button */
+.customise-trigger-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 42px !important;
+    font-size: 15px !important;
+    font-weight: 600;
+    border-radius: 40px !important;
+    border: none;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+    transition: transform .3s ease, box-shadow .3s ease;
+    animation: ctaPulse 2.4s ease-in-out infinite;
+}
+
+/* 1. Pulsing glow (breathing ring) */
+@keyframes ctaPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(44, 69, 73, .55),
+                       0 8px 22px rgba(44, 69, 73, .25); }
+    70%  { box-shadow: 0 0 0 18px rgba(44, 69, 73, 0),
+                       0 8px 22px rgba(44, 69, 73, .25); }
+    100% { box-shadow: 0 0 0 0 rgba(44, 69, 73, 0),
+                       0 8px 22px rgba(44, 69, 73, .25); }
+}
+
+/* 2. Shimmer sweep (light passes across) */
+.cta-shimmer {
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255, 255, 255, .45) 50%,
+        transparent 100%
+    );
+    transform: skewX(-25deg);
+    animation: ctaShimmer 3s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+@keyframes ctaShimmer {
+    0%   { left: -75%; }
+    55%  { left: 125%; }
+    100% { left: 125%; }
+}
+
+/* 3. Icon wiggle */
+.cta-icon {
+    display: inline-block;
+    animation: ctaWiggle 1.6s ease-in-out infinite;
+    transform-origin: center;
+}
+@keyframes ctaWiggle {
+    0%, 100% { transform: rotate(0deg); }
+    10%      { transform: rotate(-14deg); }
+    20%      { transform: rotate(12deg); }
+    30%      { transform: rotate(-8deg); }
+    40%      { transform: rotate(6deg); }
+    50%      { transform: rotate(0deg); }
+}
+
+/* 4. Arrow slide (subtle nudge forward) */
+.cta-arrow {
+    display: inline-block;
+    transition: transform .3s ease;
+    animation: ctaArrow 1.8s ease-in-out infinite;
+}
+@keyframes ctaArrow {
+    0%, 100% { transform: translateX(0); }
+    50%      { transform: translateX(5px); }
+}
+
+/* 5. Hover effects */
+.customise-trigger-btn:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 18px 45px rgba(44, 69, 73, .35);
+    animation-play-state: paused;
+}
+.customise-trigger-btn:hover .cta-icon {
+    animation: ctaSpin .6s ease;
+}
+@keyframes ctaSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+.customise-trigger-btn:hover .cta-arrow {
+    transform: translateX(8px);
+}
+
+/* 6. Click feedback */
+.customise-trigger-btn:active {
+    transform: translateY(-2px) scale(.98);
+}
+
+/* Note text */
+.customise-cta-note {
+    margin-top: 14px;
+    font-size: 14px;
+    color: #7a8b8e;
+}
+
+/* 7. Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .customise-trigger-btn,
+    .cta-shimmer,
+    .cta-icon,
+    .cta-arrow {
+        animation: none !important;
+    }
 }
