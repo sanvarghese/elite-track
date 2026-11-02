@@ -6820,7 +6820,7 @@ section:hover .section-title h2::before {
     display: inline-block;
     color: #0f6456;
     text-align: center;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-size: 14px;
     letter-spacing: 2.8px;
 }
