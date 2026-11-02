@@ -5,7 +5,7 @@
     'use strict';
 
     // ---- CONFIG (same as your customise-package.js) ----
-    const WHATSAPP_NUMBER = '910000000000'; // <-- replace with real number (country code, no +)
+    const WHATSAPP_NUMBER = '917560952693'; // Country code + number, no + or spaces
 
     const modalEl = document.getElementById('bookPackageModal');
     const form    = document.getElementById('bookPackageForm');
