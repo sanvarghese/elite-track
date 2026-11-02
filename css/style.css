@@ -3536,6 +3536,7 @@ section:hover .section-title h2::before {
 
 .single-services .day-book ul li a:hover {
     background: #0a4d42;
+    color: #0f6456!important;
     transform: translateY(-2px);
 }
 

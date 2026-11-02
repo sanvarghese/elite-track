@@ -137,7 +137,7 @@
                                     title="Classic Balcony Room - 3" style="display:none;"></a>
                             </div>
                             <div class="services-content text-center">
-                                <h4><a href="single-rooms.html">Classic Balcony Room</a></h4>
+                                <h4><a href="#">Classic Balcony Room</a></h4>
                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting. towns specifically
                                     for the food. Use your insider.
                                 </p>
@@ -154,7 +154,11 @@
                                 <div class="day-book">
                                     <ul>
                                         <li>₹600/Night</li>
-                                        <li><a href="contact.html">Book Now</a></li>
+                                        <li>
+                                            <a href="#bookStayModal" class="book-stay-btn" data-bs-toggle="modal"
+                                                data-bs-target="#bookStayModal" data-stay="Classic Balcony Room"
+                                                data-price="₹600 / Night">Book Now</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -179,7 +183,7 @@
                                     title="Classic Balcony Room - 3" style="display:none;"></a>
                             </div>
                             <div class="services-content text-center">
-                                <h4><a href="single-rooms.html">Superior Double Room</a></h4>
+                                <h4><a href="#">Superior Double Room</a></h4>
                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting. towns specifically
                                     for the food. Use your insider.
                                 </p>
@@ -196,7 +200,11 @@
                                 <div class="day-book">
                                     <ul>
                                         <li>₹400/Night</li>
-                                        <li><a href="contact.html">Book Now</a></li>
+                                        <li>
+                                            <a href="#bookStayModal" class="book-stay-btn" data-bs-toggle="modal"
+                                                data-bs-target="#bookStayModal" data-stay="Superior Double Room"
+                                                data-price="₹400 / Night">Book Now</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -221,7 +229,7 @@
                                     title="Classic Balcony Room - 3" style="display:none;"></a>
                             </div>
                             <div class="services-content text-center">
-                                <h4><a href="single-rooms.html">Super Balcony Double Room</a></h4>
+                                <h4><a href="#">Super Balcony Double Room</a></h4>
                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting. towns specifically
                                     for the food. Use your insider
                                 </p>
@@ -238,7 +246,11 @@
                                 <div class="day-book">
                                     <ul>
                                         <li>₹100/Night</li>
-                                        <li><a href="contact.html">Book Now</a></li>
+                                        <li>
+                                            <a href="#bookStayModal" class="book-stay-btn" data-bs-toggle="modal"
+                                                data-bs-target="#bookStayModal" data-stay="Super Balcony Double Room"
+                                                data-price="₹100 / Night">Book Now</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -467,7 +479,117 @@
         <!-- instagram-area-end -->
     </main>
     <!-- main-area-end -->
-    <!-- footer -->
+    <!-- =========================================================
+     STAY BOOKING MODAL
+     ========================================================= -->
+    <div class="modal fade customise-modal" id="bookStayModal" tabindex="-1" aria-labelledby="bookStayModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header customise-modal-header">
+                    <div>
+                        <h5 class="modal-title" id="bookStayModalLabel">
+                            <i class="fas fa-bed mr-2"></i> Book Your Stay
+                        </h5>
+                        <p class="mb-0">Fill in your details — we'll confirm on WhatsApp.</p>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="bookStayForm" class="customise-form" novalidate>
+
+                        <!-- ===== Selected Stay (auto-filled) ===== -->
+                        <div class="cf-group">
+                            <h4 class="cf-group-title">
+                                <span class="cf-step"><i class="fas fa-bed"></i></span> Selected Stay
+                            </h4>
+                            <div class="row">
+                                <div class="col-md-8 mb-3">
+                                    <label class="cf-label">Room / Stay Name</label>
+                                    <input type="text" class="cf-input" name="stay_name" id="bsStayName" readonly>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="cf-label">Price</label>
+                                    <input type="text" class="cf-input" name="stay_price" id="bsStayPrice" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== Dates ===== -->
+                        <div class="cf-group">
+                            <h4 class="cf-group-title">
+                                <span class="cf-step">1</span> Stay Dates
+                            </h4>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="cf-label">Check-In Date <span class="req">*</span></label>
+                                    <input type="date" class="cf-input" name="checkin_date" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="cf-label">Check-Out Date <span class="req">*</span></label>
+                                    <input type="date" class="cf-input" name="checkout_date" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== Guests ===== -->
+                        <div class="cf-group">
+                            <h4 class="cf-group-title">
+                                <span class="cf-step">2</span> Guests
+                            </h4>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="cf-label">Number of People <span class="req">*</span></label>
+                                    <input type="number" class="cf-input" name="people" min="1" max="20" value="2"
+                                        required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="cf-label">Rooms Required</label>
+                                    <input type="number" class="cf-input" name="rooms" min="1" max="10" value="1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== Contact ===== -->
+                        <div class="cf-group">
+                            <h4 class="cf-group-title">
+                                <span class="cf-step">3</span> Your Details
+                            </h4>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="cf-label">Full Name <span class="req">*</span></label>
+                                    <input type="text" class="cf-input" name="name" placeholder="Your name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="cf-label">Phone <span class="req">*</span></label>
+                                    <input type="tel" class="cf-input" name="phone" placeholder="+91 XXXXX XXXXX"
+                                        pattern="[0-9+\s-]{7,15}" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="bsSuccess" class="cf-success" style="display:none;">
+                            <i class="fas fa-check-circle"></i>
+                            <h5>Thank you! Your booking request has been received.</h5>
+                            <p>Our team will contact you shortly to confirm your stay.</p>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer customise-modal-footer">
+                    <button type="button" class="pkg-btn pkg-btn-ghost" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="bookStayForm" class="pkg-btn pkg-btn-primary">
+                        <i class="fab fa-whatsapp mr-2"></i> Send on WhatsApp
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ============ STAY BOOKING MODAL END ============ -->
+
     <!-- footer -->
     <footer class="footer-bg footer-p" style="background-color: #2C4549;">
         <div class="footer-top  pt-120 pb-30">
@@ -596,6 +718,7 @@
     <script src="js/ajax-form.js"></script>
     <script src="js/paroller.js"></script>
     <script src="js/wow.min.js"></script>
+    <script src="js/book-stay.js"></script>
     <script src="js/js_isotope.pkgd.min.js"></script>
     <script src="js/imagesloaded.min.js"></script>
     <script src="js/parallax.min.js"></script>
