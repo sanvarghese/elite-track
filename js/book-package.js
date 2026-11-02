@@ -1,75 +1,156 @@
 /* =========================================================
-   BOOK PACKAGE MODAL — prefill + WhatsApp handoff
+   ELITE TRACK HOLIDAYS — BOOK PACKAGE MODULE
+   File: js/book-package.js
+   Handles: Book Now popup prefill, WhatsApp submission,
+            success state, auto-close modal.
    ========================================================= */
+
 (function () {
     'use strict';
 
-    // ---- CONFIG (same as your customise-package.js) ----
-    const WHATSAPP_NUMBER = '917560952693'; // Country code + number, no + or spaces
+    /* ---------- CONFIG ---------- */
+    const WHATSAPP_NUMBER   = '917560952693'; // Country code + number, no + or spaces
+    const AUTO_CLOSE_DELAY  = 3500;           // ms — modal closes after success
 
-    const modalEl = document.getElementById('bookPackageModal');
-    const form    = document.getElementById('bookPackageForm');
-    if (!modalEl || !form) return;
+    /* ---------- DOM READY ---------- */
+    document.addEventListener('DOMContentLoaded', init);
 
-    const nameInput   = document.getElementById('bpPackageName');
-    const priceInput  = document.getElementById('bpPackagePrice');
-    const successBox  = document.getElementById('bpSuccess');
+    function init() {
+        const form       = document.getElementById('bookPackageForm');
+        const modalEl    = document.getElementById('bookPackageModal');
+        const successBox = document.getElementById('bpSuccess');
 
-    // ---- 1. Prefill package name & price when a Book Now is clicked ----
-    document.querySelectorAll('.book-now-btn').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            nameInput.value  = btn.dataset.package || '';
-            priceInput.value = btn.dataset.price   || '';
-            successBox.style.display = 'none';
+        if (!form || !modalEl) return; // Section not on this page — exit silently
+
+        const nameInput  = document.getElementById('bpPackageName');
+        const priceInput = document.getElementById('bpPackagePrice');
+
+        /* -------- PREFILL PACKAGE NAME & PRICE ON BOOK NOW CLICK -------- */
+        document.querySelectorAll('.book-now-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                if (nameInput)  nameInput.value  = btn.dataset.package || '';
+                if (priceInput) priceInput.value = btn.dataset.price   || '';
+                if (successBox) successBox.style.display = 'none';
+            });
         });
-    });
 
-    // ---- 2. Handle submit ----
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
+        /* -------- FORM SUBMIT -------- */
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
 
-        // Validate required fields
-        if (!form.checkValidity()) {
-            form.reportValidity();
-            return;
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const data    = collectFormData(form);
+            const message = buildWhatsAppMessage(data);
+
+            openWhatsApp(WHATSAPP_NUMBER, message);
+
+            showSuccess(successBox, form, modalEl, AUTO_CLOSE_DELAY, nameInput, priceInput);
+        });
+
+        /* -------- RESET SUCCESS STATE ON REOPEN -------- */
+        modalEl.addEventListener('show.bs.modal', function () {
+            if (successBox) successBox.style.display = 'none';
+        });
+    }
+
+    /* =========================================================
+       COLLECT FORM DATA
+       ========================================================= */
+    function collectFormData(form) {
+        const formData = new FormData(form);
+        const data = {};
+
+        for (const [key, value] of formData.entries()) {
+            data[key] = value;
         }
 
-        const data = Object.fromEntries(new FormData(form).entries());
+        return data;
+    }
 
-        // ---- Build WhatsApp message ----
-        const lines = [
-            '*New Package Booking Request*',
-            '------------------------------',
-            '*Package Name:* ' + (data.package_name  || '-'),
-            '*Price:* '        + (data.package_price || '-'),
+    /* =========================================================
+       BUILD WHATSAPP MESSAGE
+       ========================================================= */
+    function buildWhatsAppMessage(d) {
+        const line = '━━━━━━━━━━━━━━━━━━━━';
+
+        let travelDate = d.travel_date || 'Not specified';
+        if (d.travel_date) {
+            const dt = new Date(d.travel_date);
+            if (!isNaN(dt)) {
+                travelDate = dt.toLocaleDateString('en-IN', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                });
+            }
+        }
+
+        return [
+            '🌟 *NEW PACKAGE BOOKING REQUEST* 🌟',
+            line,
             '',
-            '*Destination:* '  + (data.destination   || '-'),
-            '*Travel Date:* '  + (data.travel_date   || '-'),
-            '*Travellers:* Adults ' + (data.adults || 0) +
-                ', Children ' + (data.children || 0) +
-                ', Infants '  + (data.infants  || 0),
-            '*Pickup City:* '  + (data.pickup_city   || '-'),
+            '📦 *Selected Package*',
+            `• Package : ${d.package_name  || '-'}`,
+            `• Price   : ${d.package_price || '-'}`,
             '',
-            '*Name:* '         + (data.name          || '-'),
-            '*Phone:* '        + (data.phone         || '-'),
-            '*Email:* '        + (data.email         || '-'),
-            '*Special Request:* ' + (data.notes || 'None')
-        ];
+            line,
+            '🧳 *Trip Details*',
+            `• Destination : ${d.destination || '-'}`,
+            `• Travel Date : ${travelDate}`,
+            `• Pickup City : ${d.pickup_city || '-'}`,
+            '',
+            line,
+            '👥 *Travellers*',
+            `• Adults   : ${d.adults   || 0}`,
+            `• Children : ${d.children || 0}`,
+            `• Infants  : ${d.infants  || 0}`,
+            '',
+            line,
+            '👤 *Customer Details*',
+            `• Name  : ${d.name  || '-'}`,
+            `• Phone : ${d.phone || '-'}`,
+            `• Email : ${d.email || '-'}`,
+            '',
+            line,
+            '📝 *Special Requests*',
+            d.notes ? d.notes : 'None',
+            '',
+            line,
+            '_Sent via Elite Track Holidays website_'
+        ].join('\n');
+    }
 
-        const message = lines.join('\n');
-        const url = 'https://wa.me/' + WHATSAPP_NUMBER +
-                    '?text=' + encodeURIComponent(message);
-
-        // Show success, open WhatsApp
-        successBox.style.display = 'block';
+    /* =========================================================
+       OPEN WHATSAPP
+       ========================================================= */
+    function openWhatsApp(number, message) {
+        const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
         window.open(url, '_blank');
+    }
 
-        // Optional: reset after a short delay / on modal hide
+    /* =========================================================
+       SHOW SUCCESS + AUTO-CLOSE MODAL
+       ========================================================= */
+    function showSuccess(successBox, form, modalEl, delay, nameInput, priceInput) {
+        if (successBox) successBox.style.display = 'block';
+
+        form.reset();
+
         setTimeout(function () {
-            form.reset();
-            nameInput.value  = '';
-            priceInput.value = '';
-            successBox.style.display = 'none';
-        }, 8000);
-    });
+            if (successBox) successBox.style.display = 'none';
+
+            if (nameInput)  nameInput.value  = '';
+            if (priceInput) priceInput.value = '';
+
+            if (window.bootstrap && bootstrap.Modal) {
+                const modal = bootstrap.Modal.getInstance(modalEl);
+                if (modal) modal.hide();
+            }
+        }, delay);
+    }
+
 })();
