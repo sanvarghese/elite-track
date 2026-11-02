@@ -9,7 +9,7 @@
     'use strict';
 
     /* ---------- CONFIG ---------- */
-    const WHATSAPP_NUMBER  = '917560952000'; // Same as packages
+    const WHATSAPP_NUMBER  = '917560952693'; // Same as packages
     const AUTO_CLOSE_DELAY = 3500;           // ms — modal closes after success
 
     /* ---------- DOM READY ---------- */
