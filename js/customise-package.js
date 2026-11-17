@@ -2,7 +2,7 @@
    ELITE TRACK HOLIDAYS — CUSTOMISE PACKAGE MODULE
    File: js/customise-package.js
    Handles: Customise form popup, WhatsApp submission,
-            nights auto-calc, success state.
+            nights auto-calc, past-date validation, success state.
    ========================================================= */
 
 (function () {
@@ -22,12 +22,25 @@
 
         if (!form || !modalEl) return; // Section not on this page — exit silently
 
+        const travelDateInput = form.querySelector('[name="travel_date"]');
+
+        /* -------- SET MIN DATE = TODAY (blocks past dates in picker) -------- */
+        if (travelDateInput) {
+            setMinDateToday(travelDateInput);
+        }
+
         /* -------- FORM SUBMIT -------- */
         form.addEventListener('submit', function (e) {
             e.preventDefault();
 
             if (!form.checkValidity()) {
                 form.reportValidity();
+                return;
+            }
+
+            /* -------- EXTRA GUARD: past date check -------- */
+            if (travelDateInput && isPastDate(travelDateInput.value)) {
+                showDateError(travelDateInput, 'Please select a travel date from today onwards.');
                 return;
             }
 
@@ -38,6 +51,15 @@
 
             showSuccess(successBox, form, modalEl, AUTO_CLOSE_DELAY);
         });
+
+        /* -------- LIVE VALIDATION: clear error when user picks a valid date -------- */
+        if (travelDateInput) {
+            travelDateInput.addEventListener('change', function () {
+                if (!isPastDate(this.value)) {
+                    clearDateError(this);
+                }
+            });
+        }
 
         /* -------- AUTO-CALC NIGHTS FROM DAYS -------- */
         const daysInput = form.querySelector('[name="days"]');
@@ -52,10 +74,51 @@
             });
         }
 
-        /* -------- RESET SUCCESS STATE ON REOPEN -------- */
+        /* -------- RESET SUCCESS STATE & REFRESH MIN DATE ON REOPEN -------- */
         modalEl.addEventListener('show.bs.modal', function () {
             if (successBox) successBox.style.display = 'none';
+            if (travelDateInput) {
+                setMinDateToday(travelDateInput);
+                clearDateError(travelDateInput);
+            }
         });
+    }
+
+    /* =========================================================
+       DATE VALIDATION HELPERS
+       ========================================================= */
+    function setMinDateToday(input) {
+        input.setAttribute('min', getTodayISO());
+    }
+
+    function getTodayISO() {
+        const t = new Date();
+        const y = t.getFullYear();
+        const m = String(t.getMonth() + 1).padStart(2, '0');
+        const d = String(t.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+    }
+
+    function isPastDate(value) {
+        if (!value) return false; // empty handled by required attribute
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const picked = new Date(value + 'T00:00:00');
+        return picked < today;
+    }
+
+    function showDateError(input, msg) {
+        input.classList.add('cf-input-error');
+        input.setCustomValidity(msg);
+        input.reportValidity();
+        // Clear validity after reporting so it doesn't block future submits
+        // when user fixes the date; change handler will also clear it.
+        setTimeout(function () { input.setCustomValidity(''); }, 0);
+    }
+
+    function clearDateError(input) {
+        input.classList.remove('cf-input-error');
+        input.setCustomValidity('');
     }
 
     /* =========================================================
@@ -95,7 +158,7 @@
 
         let travelDate = d.travel_date || 'Not specified';
         if (d.travel_date) {
-            const dt = new Date(d.travel_date);
+            const dt = new Date(d.travel_date + 'T00:00:00');
             if (!isNaN(dt)) {
                 travelDate = dt.toLocaleDateString('en-IN', {
                     day: '2-digit',
