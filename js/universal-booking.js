@@ -11,7 +11,7 @@
     'use strict';
 
     /* ---------- CONFIG ---------- */
-    const WHATSAPP_NUMBER  = '917560952693';
+    const WHATSAPP_NUMBER  = '916282030527';
     const AUTO_CLOSE_DELAY = 3500;
 
     /* ---------- DOM READY ---------- */
