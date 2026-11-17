@@ -65,7 +65,8 @@
                             </div>
                         </div>
                         <div class="col-xl-2 col-lg-2 d-none d-lg-block">
-                            <a href="#" class="top-btn mt-10 mb-10">Book now </a>
+                            <a href="#" class="top-btn mt-10 mb-10 book-trip-btn" data-bs-toggle="modal"
+                                data-bs-target="#universalBookingModal">Book now</a>
                         </div>
 
                         <div class="col-12">
@@ -139,7 +140,9 @@
                                     <div class="hero-divider hero-anim"><i></i></div>
 
                                     <div class="slider-btn mt-30 mb-105 hero-anim hero-btn">
-                                        <a href="#" class="btn ss-btn active mr-15 hero-pulse">book your trip</a>
+                                        <a href="#" class="btn ss-btn active mr-15 hero-pulse book-trip-btn"
+                                            data-bs-toggle="modal" data-bs-target="#universalBookingModal">Book Your
+                                            Trip</a>
                                     </div>
                                 </div>
                             </div>
@@ -675,7 +678,7 @@
                                     <li><i class="fas fa-check"></i> Lorem Ipsum is simply</li>
                                 </ul>
                                 <div class="category-btn">
-                                    <a href="contact.html" class="btn ss-btn">Book Now</a>
+                                    <a href="stays.html" class="btn ss-btn">View Details</a>
                                 </div>
                             </div>
                         </div>
@@ -708,7 +711,7 @@
                                     <li><i class="fas fa-check"></i> Lorem Ipsum is simply</li>
                                 </ul>
                                 <div class="category-btn">
-                                    <a href="contact.html" class="btn ss-btn">Book Now</a>
+                                    <a href="stays.html" class="btn ss-btn">View Details</a>
                                 </div>
                             </div>
                         </div>
@@ -741,7 +744,7 @@
                                     <li><i class="fas fa-check"></i> Lorem Ipsum is simply</li>
                                 </ul>
                                 <div class="category-btn">
-                                    <a href="contact.html" class="btn ss-btn">Book Now</a>
+                                    <a href="stays.html" class="btn ss-btn">View Details</a>
                                 </div>
                             </div>
                         </div>
@@ -773,7 +776,7 @@
                                     <li><i class="fas fa-check"></i> Lorem Ipsum is simply</li>
                                 </ul>
                                 <div class="category-btn">
-                                    <a href="contact.html" class="btn ss-btn">Book Now</a>
+                                    <a href="stays.html" class="btn ss-btn">View Details</a>
                                 </div>
                             </div>
                         </div>
@@ -930,7 +933,7 @@
         <!-- room-area-end -->
 
         <!-- feature-area -->
-        <section class="feature-area2 p-relative pt-120 pb-120 fix" style="background: #2C4549;">
+        <!-- <section class="feature-area2 p-relative pt-120 pb-120 fix" style="background: #2C4549;">
             <div class="container-fluid">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-12 col-md-12 col-sm-12 pr-30">
@@ -966,9 +969,8 @@
 
                 </div>
             </div>
-        </section>
+        </section> -->
 
-        <!-- service-area-end -->
         <!-- testimonial-area -->
         <section class="testimonial-area pt-120 pb-120 p-relative fix"
             style="background-image: url(img/bg/testimonial-bg.png); background-repeat: no-repeat;background-position: center center;">
@@ -1736,27 +1738,362 @@
     <!-- =========================================================
      PACKAGE CUSTOMISATION MODAL END
      ========================================================= -->
+    <!-- =========================================================
+     UNIVERSAL BOOKING MODAL — Package / Stay / Cab
+     ========================================================= -->
+    <div class="modal fade customise-modal" id="universalBookingModal" tabindex="-1"
+        aria-labelledby="universalBookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
 
+                <!-- Header -->
+                <div class="modal-header customise-modal-header">
+                    <div>
+                        <h5 class="modal-title" id="universalBookingModalLabel">
+                            <i class="fas fa-concierge-bell mr-2"></i> Book Your Trip
+                        </h5>
+                        <p class="mb-0">Choose what you'd like to book — we'll confirm on WhatsApp.</p>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+
+                <!-- Body -->
+                <div class="modal-body">
+                    <form id="universalBookingForm" class="customise-form" novalidate>
+
+                        <!-- ===== SELECTION TYPE ===== -->
+                        <div class="cf-group">
+                            <h4 class="cf-group-title">
+                                <span class="cf-step">0</span> What would you like to book?
+                            </h4>
+                            <div class="ub-type-chips">
+                                <label class="ub-type-chip">
+                                    <input type="radio" name="booking_type" value="package" checked>
+                                    <span><i class="fas fa-suitcase-rolling"></i> Package</span>
+                                </label>
+                                <label class="ub-type-chip">
+                                    <input type="radio" name="booking_type" value="stay">
+                                    <span><i class="fas fa-bed"></i> Room / Stay</span>
+                                </label>
+                                <label class="ub-type-chip">
+                                    <input type="radio" name="booking_type" value="cab">
+                                    <span><i class="fas fa-taxi"></i> Cab</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- ===== PANEL: PACKAGE ===== -->
+                        <div class="ub-panel" data-panel="package">
+
+                            <div class="cf-group">
+                                <h4 class="cf-group-title">
+                                    <span class="cf-step"><i class="fas fa-box"></i></span> Selected Package
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-8 mb-3">
+                                        <label class="cf-label">Package <span class="req">*</span></label>
+                                        <select class="cf-input" name="package_name" id="ubPackageName" required>
+                                            <option value="">Select a package</option>
+                                            <option value="Honeymoon Package" data-price="₹30,000 / couple">Honeymoon
+                                                Package</option>
+                                            <option value="Couple Getaway" data-price="₹39,000 / couple">Couple Getaway
+                                            </option>
+                                            <option value="Family Package" data-price="₹35,000 / family">Family Package
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="cf-label">Price</label>
+                                        <input type="text" class="cf-input" name="package_price" id="ubPackagePrice"
+                                            readonly placeholder="—">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cf-group">
+                                <h4 class="cf-group-title">
+                                    <span class="cf-step">1</span> Trip Details
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="cf-label">Destination <span class="req">*</span></label>
+                                        <select class="cf-input" name="pkg_destination">
+                                            <option value="">Select destination</option>
+                                            <option>Wayanad</option>
+                                            <option>Munnar</option>
+                                            <option>Alleppey</option>
+                                            <option>Coorg</option>
+                                            <option>Ooty</option>
+                                            <option>Custom / Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="cf-label">Travel Date <span class="req">*</span></label>
+                                        <input type="date" class="cf-input" name="pkg_travel_date">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cf-group">
+                                <h4 class="cf-group-title">
+                                    <span class="cf-step">2</span> Travellers
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label class="cf-label">Adults <span class="req">*</span></label>
+                                        <input type="number" class="cf-input" name="pkg_adults" min="1" max="30"
+                                            value="2">
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="cf-label">Children</label>
+                                        <input type="number" class="cf-input" name="pkg_children" min="0" max="20"
+                                            value="0">
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="cf-label">Infants</label>
+                                        <input type="number" class="cf-input" name="pkg_infants" min="0" max="10"
+                                            value="0">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cf-group">
+                                <h4 class="cf-group-title">
+                                    <span class="cf-step">3</span> Pickup City
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="cf-label">Pickup City <span class="req">*</span></label>
+                                        <select class="cf-input" name="pkg_pickup">
+                                            <option value="">Select pickup city</option>
+                                            <option>Calicut</option>
+                                            <option>Mysore</option>
+                                            <option>Kochi</option>
+                                            <option>Bangalore</option>
+                                            <option>Coimbatore</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== PANEL: STAY ===== -->
+                        <div class="ub-panel" data-panel="stay" style="display:none;">
+                            <div class="cf-group">
+                                <h4 class="cf-group-title">
+                                    <span class="cf-step"><i class="fas fa-bed"></i></span> Selected Stay
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-8 mb-3">
+                                        <label class="cf-label">Room / Stay <span class="req">*</span></label>
+                                        <select class="cf-input" name="stay_name" id="ubStayName" required>
+                                            <option value="">Select a room / stay</option>
+                                            <option value="Classic Balcony Room" data-price="₹600 / night">Classic
+                                                Balcony Room</option>
+                                            <option value="Superior Double Room" data-price="₹400 / night">Superior
+                                                Double Room</option>
+                                            <option value="Super Balcony Double Room" data-price="₹100 / night">Super
+                                                Balcony Double Room</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="cf-label">Price</label>
+                                        <input type="text" class="cf-input" name="stay_price" id="ubStayPrice" readonly
+                                            placeholder="—">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cf-group">
+                                <h4 class="cf-group-title">
+                                    <span class="cf-step">1</span> Stay Dates
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="cf-label">Check-In <span class="req">*</span></label>
+                                        <input type="date" class="cf-input" name="stay_checkin">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="cf-label">Check-Out <span class="req">*</span></label>
+                                        <input type="date" class="cf-input" name="stay_checkout">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cf-group">
+                                <h4 class="cf-group-title">
+                                    <span class="cf-step">2</span> Guests
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="cf-label">Number of People <span class="req">*</span></label>
+                                        <input type="number" class="cf-input" name="stay_people" min="1" max="20"
+                                            value="2">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="cf-label">Rooms Required</label>
+                                        <input type="number" class="cf-input" name="stay_rooms" min="1" max="10"
+                                            value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== PANEL: CAB ===== -->
+                        <div class="ub-panel" data-panel="cab" style="display:none;">
+
+                            <div class="cf-group">
+                                <h4 class="cf-group-title">
+                                    <span class="cf-step">1</span> Cab &amp; Route
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="cf-label">Cab Type <span class="req">*</span></label>
+                                        <select class="cf-input" name="cab_type">
+                                            <option value="">Select cab type</option>
+                                            <option>Sedan (Dzire / Etios)</option>
+                                            <option>SUV (Ertiga / Marazzo)</option>
+                                            <option>Premium SUV (Innova Crysta)</option>
+                                            <option>Tempo Traveller (12+ seats)</option>
+                                            <option>Coupe / Hatchback</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="cf-label">Travel Date <span class="req">*</span></label>
+                                        <input type="date" class="cf-input" name="cab_travel_date">
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="cf-label">Pickup City <span class="req">*</span></label>
+                                        <select class="cf-input" name="cab_pickup">
+                                            <option value="">Select pickup city</option>
+                                            <option>Calicut</option>
+                                            <option>Mysore</option>
+                                            <option>Kochi</option>
+                                            <option>Bangalore</option>
+                                            <option>Coimbatore</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="cf-label">Drop City <span class="req">*</span></label>
+                                        <select class="cf-input" name="cab_drop">
+                                            <option value="">Select drop city</option>
+                                            <option>Calicut</option>
+                                            <option>Mysore</option>
+                                            <option>Kochi</option>
+                                            <option>Bangalore</option>
+                                            <option>Coimbatore</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="cf-label">AC Preference</label>
+                                        <select class="cf-input" name="cab_ac">
+                                            <option>AC</option>
+                                            <option>Non-AC</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cf-group">
+                                <h4 class="cf-group-title">
+                                    <span class="cf-step">2</span> Travellers
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label class="cf-label">Adults <span class="req">*</span></label>
+                                        <input type="number" class="cf-input" name="cab_adults" min="1" max="30"
+                                            value="2">
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="cf-label">Children</label>
+                                        <input type="number" class="cf-input" name="cab_children" min="0" max="20"
+                                            value="0">
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="cf-label">Infants</label>
+                                        <input type="number" class="cf-input" name="cab_infants" min="0" max="10"
+                                            value="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== CONTACT (shared by all 3 types) ===== -->
+                        <div class="cf-group">
+                            <h4 class="cf-group-title">
+                                <span class="cf-step"><i class="fas fa-user"></i></span> Your Details
+                            </h4>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="cf-label">Full Name <span class="req">*</span></label>
+                                    <input type="text" class="cf-input" name="name" placeholder="Your name" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="cf-label">Phone <span class="req">*</span></label>
+                                    <input type="tel" class="cf-input" name="phone" placeholder="+91 XXXXX XXXXX"
+                                        pattern="[0-9+\s-]{7,15}" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="cf-label">Email</label>
+                                    <input type="email" class="cf-input" name="email" placeholder="you@example.com">
+                                </div>
+                                <div class="col-12 mb-2">
+                                    <label class="cf-label">Special Requests</label>
+                                    <textarea class="cf-input" name="notes" rows="2"
+                                        placeholder="Anything else we should know?"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Success -->
+                        <div id="ubSuccess" class="cf-success" style="display:none;">
+                            <i class="fas fa-check-circle"></i>
+                            <h5>Thank you! Your booking request has been received.</h5>
+                            <p>Our team will contact you shortly to confirm.</p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Footer -->
+                <div class="modal-footer customise-modal-footer">
+                    <button type="button" class="pkg-btn pkg-btn-ghost" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="universalBookingForm" class="pkg-btn pkg-btn-primary">
+                        <i class="fab fa-whatsapp mr-2"></i> Send on WhatsApp
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ============ UNIVERSAL BOOKING MODAL END ============ -->
 
     <!-- JS here -->
-    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- <script src="js/vendor/modernizr-3.5.0.min.js"></script> -->
     <script src="js/vendor/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/slick.min.js"></script>
-    <script src="js/ajax-form.js"></script>
-    <script src="js/paroller.js"></script>
+    <!-- <script src="js/ajax-form.js"></script> -->
+    <!-- <script src="js/paroller.js"></script> -->
     <script src="js/wow.min.js"></script>
-    <script src="js/js_isotope.pkgd.min.js"></script>
-    <script src="js/imagesloaded.min.js"></script>
-    <script src="js/parallax.min.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
+    <!-- <script src="js/js_isotope.pkgd.min.js"></script> -->
+    <!-- <script src="js/imagesloaded.min.js"></script> -->
+    <script src="js/universal-booking.js"></script>
+    <script src="js/customise-package.js"></script>
+    <!-- <script src="js/parallax.min.js"></script> -->
+    <!-- <script src="js/jquery.waypoints.min.js"></script> -->
     <script src="js/jquery.counterup.min.js"></script>
     <script src="js/jquery.scrollUp.min.js"></script>
     <script src="js/jquery.meanmenu.min.js"></script>
-    <script src="js/parallax-scroll.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/element-in-view.js"></script>
+    <!-- <script src="js/parallax-scroll.js"></script> -->
+    <!-- <script src="js/jquery.magnific-popup.min.js"></script> -->
+    <!-- <script src="js/element-in-view.js"></script> -->
     <script src="js/main.js"></script>
 </body>
 
